@@ -1,6 +1,7 @@
 package com.example.morkince.movieworld.activities
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -30,6 +31,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 createAccount(email, name, password)
             }else{
+                Log.e("ERROR", "Incomplete data")
                 var alertDialog = AlertDialog.Builder(this)
                 alertDialog.setMessage("Please enter all user details")
                 alertDialog.setTitle("INFO MISSING")
@@ -65,7 +67,9 @@ class SignUpActivity : AppCompatActivity() {
                         alertDialog.setPositiveButton("OK") { dialog, _ ->
                             run {
                                 dialog.dismiss()
-                                //Proceed to dashboard
+                                //Proceed to home screen
+                                startActivity(Intent(this, HomeScreenActivity::class.java))
+                                finish()
                             }
                         }
                         alertDialog.show()
