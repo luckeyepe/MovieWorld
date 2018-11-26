@@ -36,8 +36,6 @@ class SignUpActivity : AppCompatActivity() {
                 alertDialog.show()
             }
         }
-
-
     }
 
     private fun isCompleteData(): Boolean {
