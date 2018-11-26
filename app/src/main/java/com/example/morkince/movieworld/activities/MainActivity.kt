@@ -13,10 +13,26 @@ import com.google.firebase.auth.FirebaseUser
 
 
 class MainActivity : AppCompatActivity() {
+    var mAuth: FirebaseAuth ?= null
+    var user: FirebaseUser ?= null
+    var mAuthListener: FirebaseAuth.AuthStateListener ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //check if user is already logged in
+        mAuth = FirebaseAuth.getInstance()
+        mAuthListener = FirebaseAuth.AuthStateListener {
+            firebaseAuth: FirebaseAuth ->
+            user = firebaseAuth.currentUser
+            if (user!= null){
+                startActivity(Intent(this, HomeScreenActivity::class.java))
+                finish()
+            }
+        }
+
+
 
         textView_mainSignUp.setOnClickListener {
             Log.d("INFO", "Sign Up text in Main Activity Selected")
@@ -62,10 +78,13 @@ class MainActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        val mAuth = FirebaseAuth.getInstance()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-        startActivity(Intent(this, HomeScreenActivity::class.java))
-        finish()
+        mAuth!!.addAuthStateListener(mAuthListener!!)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (mAuthListener != null){
+            mAuth!!.removeAuthStateListener(mAuthListener!!)
+        }
     }
 }
