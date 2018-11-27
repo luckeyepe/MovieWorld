@@ -19,11 +19,12 @@ class HomeScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
-        title = "Mickey Movie World"
+
         navigation.setOnNavigationItemSelectedListener{
             when(it.itemId){
 
                 R.id.navigation_home ->{
+                    title = "Home"
                     //show home fragment
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.frameLayout_homeScreenFrame, HomeFragment())
@@ -33,6 +34,7 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_profile ->{
+                    title = "Profile"
                     //show profile fragment
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.frameLayout_homeScreenFrame, ProfileFragment())
@@ -44,6 +46,7 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_branch -> {
+                    title = "Cinema Branches"
                     //show branches fragment
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.frameLayout_homeScreenFrame, BranchFragment())
@@ -55,9 +58,5 @@ class HomeScreenActivity : AppCompatActivity() {
                 else -> false
             }
         }
-    }
-
-    public fun endActivity(){
-        finish()
     }
 }
