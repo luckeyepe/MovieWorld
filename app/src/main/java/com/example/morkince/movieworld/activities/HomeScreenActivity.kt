@@ -20,6 +20,9 @@ class HomeScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
 
+
+
+        //load up fragments
         navigation.setOnNavigationItemSelectedListener{
             when(it.itemId){
 
