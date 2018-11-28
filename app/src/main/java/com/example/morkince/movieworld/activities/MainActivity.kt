@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-
         textView_mainSignUp.setOnClickListener {
             Log.d("INFO", "Sign Up text in Main Activity Selected")
             startActivity(Intent(this, SignUpActivity::class.java))
