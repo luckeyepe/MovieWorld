@@ -20,6 +20,12 @@ class HomeScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
 
+        title = "Home"
+        //show home fragment
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frameLayout_homeScreenFrame, HomeFragment())
+            commit()
+        }
 
 
         //load up fragments

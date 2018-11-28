@@ -20,4 +20,21 @@ class HomeFragmentSectionAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) 
     override fun getCount(): Int {
         return 3//because of 3 tabs
     }
+
+    //use this to change the title/name of each tab in the tab layout
+    override fun getPageTitle(position: Int): CharSequence? {
+        when(position){
+            0 -> {
+                return "Now Playing"
+            }
+            1 -> {
+                return "Coming Soon"
+            }
+            2 -> {
+                return "Advance Ticket"
+            }
+        }
+
+        return null
+    }
 }
