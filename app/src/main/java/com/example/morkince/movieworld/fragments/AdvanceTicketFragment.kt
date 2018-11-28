@@ -18,16 +18,14 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class HomeFragment : Fragment() {
+class AdvanceTicketFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_advance_ticket, container, false)
     }
 
 
