@@ -1,8 +1,12 @@
 package com.example.morkince.movieworld.adapters
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.net.Uri
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.text.Layout
@@ -45,7 +49,7 @@ class MovieViewHolder(itemView: View, var context: Context): RecyclerView.ViewHo
             var popupRating = popupView.textView_popupMovieDetailMovieRating
             var popupRunningTime = popupView.textView_popupMovieDetailMovieRunTime
             var popupGenre = popupView.textView_popupMovieDetailMovieGenre
-
+            var popupTrailerVideo = popupView.button_popupMovieDetailMovieTrailer
 
             //add movie poster
             Picasso.get().load(movie.movie_poster_url).into(popupViewPoster)
@@ -68,7 +72,14 @@ class MovieViewHolder(itemView: View, var context: Context): RecyclerView.ViewHo
 
             popupGenre.text = "Genres:$cleanGenre"
 
-
+            //play youtube video on youtube app
+            popupTrailerVideo.setOnClickListener {
+                var intent = Intent(Intent.ACTION_VIEW, Uri.parse(movie.movie_trailer_url))
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.putExtra("force_fullscreen",true)//set youtube to full screen
+                intent.setPackage("com.google.android.youtube")
+                startActivity(context, intent, null)
+            }
 
 
 
