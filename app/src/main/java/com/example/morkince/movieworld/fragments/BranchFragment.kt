@@ -50,10 +50,11 @@ class BranchFragment : Fragment() {
                 if(task.isSuccessful){
                     for (document in task.result!!){
                         branchList.add(document.toObject(Branch::class.java))
-                        adapter = BranchListAdapter(branchList, this!!.context!!)
+                        adapter = BranchListAdapter(branchList, this?.context!!)
                         view.recylerView_branchFragmentBrachList.adapter = adapter
                     }
                 }
+
             }
 
 
