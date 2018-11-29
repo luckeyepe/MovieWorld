@@ -29,7 +29,7 @@ class HomeScreenActivity : AppCompatActivity() {
 
 
         //load up fragments
-        navigation.setOnNavigationItemSelectedListener{
+        navigation_homeScreenBottomNavigation.setOnNavigationItemSelectedListener{
             when(it.itemId){
 
                 R.id.navigation_home ->{
@@ -49,7 +49,6 @@ class HomeScreenActivity : AppCompatActivity() {
                         replace(R.id.frameLayout_homeScreenFrame, ProfileFragment())
                         commit()
                     }
-
                     true
 
                 }

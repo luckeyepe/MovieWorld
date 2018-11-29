@@ -9,15 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.morkince.movieworld.R
-import com.example.morkince.movieworld.adapters.BranchListAdapter
-import com.example.morkince.movieworld.adapters.MovieViewHolder
 import com.example.morkince.movieworld.adapters.NowPlayingMovieAdapter
-import com.example.morkince.movieworld.models.Branch
 import com.example.morkince.movieworld.models.Movie
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import kotlinx.android.synthetic.main.fragment_branch.view.*
 import kotlinx.android.synthetic.main.fragment_now_playing.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,7 +35,7 @@ class NowPlayingFragment : Fragment() {
         var db = FirebaseFirestore.getInstance().collection("Movies")
         var query = db.whereEqualTo("movie_is_showing",true)
         var movieList = ArrayList<Movie>()
-        var adapter = NowPlayingMovieAdapter(movieList, this!!.context!!)
+        var adapter = NowPlayingMovieAdapter(movieList, this?.context!!)
 
 
         view.recyclerView_nowPlayingFragmentRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -51,7 +47,7 @@ class NowPlayingFragment : Fragment() {
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
                         movieList.add(document.toObject(Movie::class.java))
-                        adapter = NowPlayingMovieAdapter(movieList, this!!.context!!)
+                        adapter = NowPlayingMovieAdapter(movieList, this?.context!!)
                         view.recyclerView_nowPlayingFragmentRecyclerView.adapter = adapter
                     }
                 }
