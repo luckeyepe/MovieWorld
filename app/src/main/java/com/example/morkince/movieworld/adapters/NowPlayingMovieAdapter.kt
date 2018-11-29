@@ -11,7 +11,7 @@ class NowPlayingMovieAdapter(private val list: ArrayList<Movie>, private val con
     : RecyclerView.Adapter<MovieViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MovieViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.now_playing_row, parent, false)
-        return MovieViewHolder(view)
+        return MovieViewHolder(view, context)
     }
 
     override fun getItemCount(): Int = list.size

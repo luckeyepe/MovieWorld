@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="126dp"
+            android:layout_height="145dp" app:srcCompat="@drawable/img_movie_real"
+            android:id="@+id/imageView_popupMovieDetailMoviePoster" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+    <TextView
+            android:text="Movie Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_popupMovieDetailMovieTitle" android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_popupMovieDetailMoviePoster"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:textSize="16sp"/>
+    <TextView
+            android:text="Movie Rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_popupMovieDetailMovieRating" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView_popupMovieDetailMovieTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:maxLines="10"
+            android:lines="6"
+            android:id="@+id/textView_popupMovieDetailDescription" android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView_popupMovieDetailMovieRating"
+            android:layout_marginStart="32dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
+            android:textAlignment="viewStart"/>
+    <Button
+            android:text="BRANCH"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_popupMovieDetailMovieBranch" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView_popupMovieDetailMovieGenre"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.105" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.042"/>
+    <Button
+            android:text="Movie Trailer"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_popupMovieDetailMovieTrailer"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.894"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView_popupMovieDetailMovieGenre"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.042"/>
+    <TextView
+            android:text="Running Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_popupMovieDetailMovieRunTime"
+            app:layout_constraintTop_toBottomOf="@+id/textView_popupMovieDetailDescription"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"/>
+    <TextView
+            android:text="Genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_popupMovieDetailMovieGenre"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView_popupMovieDetailMovieRunTime"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"/>
+</android.support.constraint.ConstraintLayout>
