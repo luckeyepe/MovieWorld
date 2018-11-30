@@ -9,4 +9,5 @@ class Movie {
     var movie_run_time: Int ?= null
     var movie_title: String ?= null
     var movie_trailer_url: String ?= null
+    var movie_id: String ?= null
 }

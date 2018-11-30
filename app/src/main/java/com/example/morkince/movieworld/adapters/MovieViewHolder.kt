@@ -16,6 +16,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.morkince.movieworld.R
+import com.example.morkince.movieworld.activities.BuyTicketBranchActivity
 import com.example.morkince.movieworld.models.Movie
 import com.squareup.picasso.Picasso
 import io.opencensus.internal.StringUtil
@@ -88,7 +89,9 @@ class MovieViewHolder(itemView: View, var context: Context): RecyclerView.ViewHo
             }
 
             popupBranch.setOnClickListener {
-                //todo start new activity to choose the branch
+                var intent = Intent(context, BuyTicketBranchActivity::class.java)
+                intent.putExtra("movieID", movie.movie_id)
+                startActivity(context, intent, null)
             }
 
 

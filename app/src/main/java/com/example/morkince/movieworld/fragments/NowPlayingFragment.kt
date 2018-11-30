@@ -46,7 +46,6 @@ class NowPlayingFragment : Fragment() {
             run {
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        document.id
                         movieList.add(document.toObject(Movie::class.java))
                         adapter = NowPlayingMovieAdapter(movieList, this?.context!!)
                         view.recyclerView_nowPlayingFragmentRecyclerView.adapter = adapter
