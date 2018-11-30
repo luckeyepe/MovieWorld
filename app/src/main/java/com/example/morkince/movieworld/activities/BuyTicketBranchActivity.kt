@@ -24,7 +24,7 @@ class BuyTicketBranchActivity : AppCompatActivity() {
         val movieID:String = intent.getStringExtra("movieID")
         var branchList = ArrayList<Branch>()
         var layoutManager = LinearLayoutManager(this)
-        var adapter = TicketBranchAdapter(branchList, this)
+        var adapter = TicketBranchAdapter(branchList, this, movieID)
 
         recylerView_buyTickeyBranchRecylerView.layoutManager = layoutManager
         recylerView_buyTickeyBranchRecylerView.adapter = adapter
@@ -54,7 +54,7 @@ class BuyTicketBranchActivity : AppCompatActivity() {
                                 if(task.isSuccessful){
                                     var document  = task.result!!.toObject(Branch::class.java)
                                     branchList.add(document!!)
-                                    adapter = TicketBranchAdapter(branchList, this)
+                                    adapter = TicketBranchAdapter(branchList, this, movieID)
                                     recylerView_buyTickeyBranchRecylerView.adapter = adapter
                                 }
                             }

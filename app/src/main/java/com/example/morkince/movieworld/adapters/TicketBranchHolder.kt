@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.TextView
 import com.example.morkince.movieworld.R
 import com.example.morkince.movieworld.models.Branch
+import com.example.morkince.movieworld.models.Cinema
 import com.example.morkince.movieworld.models.Movie
 import com.example.morkince.movieworld.models.ScreeningSchedule
 import com.google.android.gms.tasks.Task
@@ -18,87 +19,58 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.activity_buy_ticket_branch.*
+import kotlinx.android.synthetic.main.pop_up_branch_cinema.view.*
 import kotlinx.android.synthetic.main.pop_up_branch_movies.view.*
 
-class TicketBranchHolder(itemView: View, var context: Context) : RecyclerView.ViewHolder(itemView) {
+class TicketBranchHolder(itemView: View, var context: Context, var movieID: String) : RecyclerView.ViewHolder(itemView) {
     fun bindItem(branch: Branch){
         var branchName: TextView = itemView.findViewById(R.id.textView_branchRowBranchName)
         var branchLocation: TextView = itemView.findViewById(R.id.textView_branchRowBranchLocation)
         var branchCardView: CardView = itemView.findViewById(R.id.cardView_branchRowCardView)
         var movieIDS = ArrayList<String>()
+        var cinemaList = ArrayList<Cinema>()
 
         branchName.text = branch.branch_name
         branchLocation.text = branch.branch_location
 
-        //for the movie available at that branch
+        //for the cinemas available at that branch
         var dialogBuilder: AlertDialog.Builder?
         var dialog: AlertDialog?
-        var popupView = LayoutInflater.from(context).inflate(R.layout.pop_up_branch_movies, null)
-        var popupRecylerView = popupView.recylerView_popupBranchMovieRecylerView
-        var movieList = ArrayList<Movie>()
-        var adapter = MovieBasicAdapter(movieList, this?.context!!)
+        var popupView = LayoutInflater.from(context).inflate(R.layout.pop_up_branch_cinema, null)
+
+        var popupRecyclerView = popupView.recyclerView_popupBranchCinemaRecylerView
+        var adapter = CinemaAdapter(cinemaList, context)
 
 
-        popupRecylerView.layoutManager = LinearLayoutManager(context)
-        popupRecylerView.adapter = adapter
+        popupRecyclerView.layoutManager = LinearLayoutManager(context)
+        popupRecyclerView.adapter = adapter
 
 
 
         branchCardView.setOnClickListener {
 
             //garb the screening schedule that the movie has
-//            FirebaseFirestore.getInstance().collection("Screening Schedule").document(movieID)
-//                .get()
-//                .addOnCompleteListener {
-//                        task: Task<DocumentSnapshot> ->
-//                    if (task.isSuccessful){
-//                        var document = task.result!!.toObject(ScreeningSchedule::class.java)
-//
-//                        //grab the ino of the branches that show this movie
-//                        for(branchID in document?.screening_schedule_branch!!){
-//                            FirebaseFirestore.getInstance().collection("Branches").document(branchID)
-//                                .get().addOnCompleteListener {
-//                                        task: Task<DocumentSnapshot> ->
-//                                    if(task.isSuccessful){
-//                                        var document  = task.result!!.toObject(Branch::class.java)
-//                                        branchList.add(document!!)
-//                                        adapter = TicketBranchAdapter(branchList, this)
-//                                        recylerView_buyTickeyBranchRecylerView.adapter = adapter
-//                                    }
-//                                }
-//                        }
-//                    }
-//                }
+            FirebaseFirestore.getInstance().collection("Screening Schedule").document(movieID)
+                .get()
+                .addOnCompleteListener {
+                        task: Task<DocumentSnapshot> ->
+                    if (task.isSuccessful){
+                        var document = task.result!!.toObject(ScreeningSchedule::class.java)
 
-
-
-            //popup the movies available in that branch
-            var db = FirebaseFirestore.getInstance().collection("Screening Schedule")
-            var query = db.whereArrayContains("screening_schedule_branch", "${branch.branch_id}")
-
-            query.get().addOnCompleteListener {
-                    task: Task<QuerySnapshot> ->
-                if (task.isSuccessful){
-                    var document = task.result!!.toObjects(ScreeningSchedule::class.java)
-
-                    //popup the movies available in that branch
-                    db = FirebaseFirestore.getInstance().collection("Movies")
-                    for(movieId in movieIDS){
-                        db.document(movieId).get().addOnCompleteListener {
-                                task: Task<DocumentSnapshot> ->
-                            if (task.isSuccessful){
-                                var document = task.result!!.toObject(Movie::class.java)
-                                //check if movie is already available
-                                if (document!!.movie_is_showing == true){
-                                    movieList.add(document)
-                                    adapter = MovieBasicAdapter(movieList, context)
-                                    popupRecylerView.adapter = adapter
-                                }
-                            }
+                        //grab the cinema numeber for that branch
+                        for(cinemaID in document?.screening_schedule_cinema_id!!){
+                            var cinema = Cinema()
+                            cinema.cinema_id = cinemaID.key
+                            cinema.cinema_name = cinemaID.value
+                            cinema.cinema_showing_time = document.screening_schedule_date
+                            cinemaList.add(cinema)
                         }
+
+                        adapter = CinemaAdapter(cinemaList, context)
+                        popupRecyclerView.adapter = adapter
                     }
                 }
-            }
+
             dialogBuilder = AlertDialog.Builder(context).setView(popupView)
             dialog = dialogBuilder!!.create()
             dialog?.show()

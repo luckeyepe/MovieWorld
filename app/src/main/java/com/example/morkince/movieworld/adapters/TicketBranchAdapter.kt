@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import com.example.morkince.movieworld.R
 import com.example.morkince.movieworld.models.Branch
 
-class TicketBranchAdapter(private val list: ArrayList<Branch>, private val context: Context): RecyclerView.Adapter<TicketBranchHolder>()  {
+class TicketBranchAdapter(private val list: ArrayList<Branch>, private val context: Context, private val movieID: String): RecyclerView.Adapter<TicketBranchHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): TicketBranchHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.branch_row, parent, false)
-        return TicketBranchHolder(view, context)
+        return TicketBranchHolder(view, context, movieID)
     }
 
     override fun getItemCount(): Int = list.size
