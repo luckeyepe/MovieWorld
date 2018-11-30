@@ -10,7 +10,7 @@ import com.example.morkince.movieworld.models.Branch
 class BranchListAdapter(private val list: ArrayList<Branch>, private val context: Context):RecyclerView.Adapter<BranchViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): BranchViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.branch_row, parent, false)
-        return BranchViewHolder(view)
+        return BranchViewHolder(view, context)
     }
 
     override fun getItemCount(): Int = list.size

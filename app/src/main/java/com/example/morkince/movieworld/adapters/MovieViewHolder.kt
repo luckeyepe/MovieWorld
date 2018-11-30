@@ -37,6 +37,13 @@ class MovieViewHolder(itemView: View, var context: Context): RecyclerView.ViewHo
         var minutes = movie.movie_run_time!! % 60
         movieRunTime.text = "$hour HR $minutes MINS"
 
+
+        //disable buy and reserve if movie is not showing
+        if (movie.movie_is_showing == false){
+            movieBuyNow.isEnabled = false
+            movieReserveTicket.isEnabled =false
+        }
+
         movieBuyNow.setOnClickListener {
             var dialogBuilder: AlertDialog.Builder?
             var dialog: AlertDialog?
@@ -50,6 +57,8 @@ class MovieViewHolder(itemView: View, var context: Context): RecyclerView.ViewHo
             var popupRunningTime = popupView.textView_popupMovieDetailMovieRunTime
             var popupGenre = popupView.textView_popupMovieDetailMovieGenre
             var popupTrailerVideo = popupView.button_popupMovieDetailMovieTrailer
+            var popupBranch = popupView.button_popupMovieDetailMovieBranch
+            var genres = ""
 
             //add movie poster
             Picasso.get().load(movie.movie_poster_url).into(popupViewPoster)
@@ -60,9 +69,6 @@ class MovieViewHolder(itemView: View, var context: Context): RecyclerView.ViewHo
             popupRunningTime.text = "Running Time: $hour hr $minutes mins"
 
             //get all the genres of the movie
-            var genres = ""
-
-            //stop at the 2nd to the
             for(genre in movie.movie_genre!!){
                 genres+=" $genre,"
             }
@@ -81,6 +87,9 @@ class MovieViewHolder(itemView: View, var context: Context): RecyclerView.ViewHo
                 startActivity(context, intent, null)
             }
 
+            popupBranch.setOnClickListener {
+                //todo start new activity to choose the branch
+            }
 
 
             dialogBuilder = AlertDialog.Builder(context).setView(popupView)
@@ -89,7 +98,7 @@ class MovieViewHolder(itemView: View, var context: Context): RecyclerView.ViewHo
         }
 
         movieReserveTicket.setOnClickListener {
-            //todo  popup fragment with movie details
+
         }
     }
 }
