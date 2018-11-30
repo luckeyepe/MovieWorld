@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
 
         view.viewPager_homeFragmentViewPager.adapter = homeFragmentSectionAdapter
         view.tabLayout_homeFragmentTabLayout.setupWithViewPager(view.viewPager_homeFragmentViewPager)
-        view.tabLayout_homeFragmentTabLayout.setTabTextColors(Color.WHITE, Color.MAGENTA)
+        view.tabLayout_homeFragmentTabLayout.setTabTextColors(Color.WHITE, Color.MAGENTA)//change the color of the text when selecting
 
         return view
     }

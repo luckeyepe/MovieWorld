@@ -56,10 +56,6 @@ class BranchFragment : Fragment() {
                 }
 
             }
-
-
-
-
         return view
     }
 
