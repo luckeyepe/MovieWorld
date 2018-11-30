@@ -9,5 +9,7 @@ class BuyTicketSeatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buy_tickey_seat)
+        val cinemaName = intent.getStringExtra("cinemaName")
+        title = cinemaName
     }
 }
