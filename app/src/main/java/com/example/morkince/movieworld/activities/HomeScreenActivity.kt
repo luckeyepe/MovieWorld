@@ -33,12 +33,11 @@ class HomeScreenActivity : AppCompatActivity() {
             when(it.itemId){
 
                 R.id.navigation_home ->{
-                    title = "Home"
-                    //show home fragment
-                    supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.frameLayout_homeScreenFrame, HomeFragment())
-                        commit()
-                    }
+                    //fixes empty activity bug
+                    startActivity(Intent(this, HomeScreenActivity::class.java))
+                    finish()
+                    //starts activity without animations
+                    overridePendingTransition(0, 0);
                     true
                 }
 
