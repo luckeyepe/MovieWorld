@@ -13,6 +13,7 @@ import android.widget.Button
 import com.example.morkince.movieworld.R
 import com.example.morkince.movieworld.activities.HomeScreenActivity
 import com.example.morkince.movieworld.activities.MainActivity
+import com.facebook.login.LoginManager
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -44,6 +45,8 @@ class ProfileFragment : Fragment() {
             this.button_profileFragmentLogOut.setOnClickListener {
                 FirebaseAuth.getInstance().signOut()
                 activity!!.finish()
+
+                LoginManager.getInstance().logOut()//logout facebook account
                 startActivity(Intent(context, MainActivity::class.java))
                 activity!!.finish()
             }
