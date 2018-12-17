@@ -242,8 +242,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                 }
-
-                // ...
             }
     }
 

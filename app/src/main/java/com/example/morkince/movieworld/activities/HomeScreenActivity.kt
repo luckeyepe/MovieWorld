@@ -43,6 +43,8 @@ class HomeScreenActivity : AppCompatActivity() {
 
                 R.id.navigation_profile ->{
                     title = "Profile"
+                    //hide the ads
+                    recyclerView_homeScreenAds.layoutParams.height = 0
                     //show profile fragment
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.frameLayout_homeScreenFrame, ProfileFragment())
@@ -54,6 +56,8 @@ class HomeScreenActivity : AppCompatActivity() {
 
                 R.id.navigation_branch -> {
                     title = "Cinema Branches"
+                    //hide the ads
+                    recyclerView_homeScreenAds.layoutParams.height = 0
                     //show branches fragment
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.frameLayout_homeScreenFrame, BranchFragment())

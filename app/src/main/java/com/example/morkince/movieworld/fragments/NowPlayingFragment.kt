@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 
 import com.example.morkince.movieworld.R
 import com.example.morkince.movieworld.adapters.NowPlayingMovieAdapter
@@ -37,8 +38,8 @@ class NowPlayingFragment : Fragment() {
         var movieList = ArrayList<Movie>()
         var adapter = NowPlayingMovieAdapter(movieList, this?.context!!)
 
-
-        view.recyclerView_nowPlayingFragmentRecyclerView.layoutManager = LinearLayoutManager(context)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        view.recyclerView_nowPlayingFragmentRecyclerView.layoutManager = layoutManager
         view.recyclerView_nowPlayingFragmentRecyclerView.adapter = adapter
 
         query.get().addOnCompleteListener {

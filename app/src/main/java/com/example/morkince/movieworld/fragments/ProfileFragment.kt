@@ -64,8 +64,9 @@ class ProfileFragment : Fragment() {
                         if (document!!.exists()) {
                             var user = document.toObject(com.example.morkince.movieworld.models.User::class.java)
                             this.textView_profileFragmentEmailAddress.text = user!!.user_email
-                            this.textView_profileFragmentUserName.text = user.user_name
-
+                            this.editText_profileFragmentFirstName.setText(user.user_first_name)
+                            this.editText_profileFragmentLastName.setText(user.user_last_name)
+                            this.editText_profileFragmentBirthdate.setText(user.user_birth_date.toString())
                         }
                     }else{
                         //Error during pulling the data from fire store
